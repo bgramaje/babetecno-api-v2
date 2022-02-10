@@ -1,0 +1,6 @@
+export const HOME = '/'
+export const USERS = '/users'
+export const MAILS = '/mails'
+export const SOFTWARES = '/software'
+export const CLIENTS = '/client'
+export const AUTH = '/auth'

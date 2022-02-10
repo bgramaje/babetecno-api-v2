@@ -1,0 +1,197 @@
+body {
+    font-family: 'Lato';
+    overflow-x: hidden;
+}
+
+.text {
+    font-family: 'Poppins';
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    margin: 0px;
+}
+
+.title span {
+    font-weight: 600;
+}
+
+.title{
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.subtitle {
+    margin-top: -20px;
+    color: #7E84A3; 
+}
+
+canvas {
+    width: 40% !important;
+    height: 40% !important;
+}
+
+.businessTD{
+    font-family: 'Raleway';
+    background-color: #EBF0F5;
+    color: #5B6E92;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    text-align: center;
+    margin: 5px;
+    padding: 0px 10px;
+}
+
+.errorTD{
+    font-family: 'Raleway';
+    background-color: #E96565;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    text-align: center;
+    margin: 5px;
+    padding: 0px 10px;
+    width: 80px;
+}
+
+.errorText {
+    font-family: 'Raleway';
+    background-color: #E96565;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    text-align: center;
+    margin: 5px;
+    padding: 2px 5px; 
+}
+
+.warningText{
+    font-family: 'Raleway';
+    background-color: #ffc852;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    text-align: center;
+    margin: 5px;
+    padding: 2px 5px;
+}
+
+.successText {
+    font-family: 'Raleway';
+    background-color: #6EE366;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    text-align: center;
+    margin: 5px;
+    padding: 2px 5px;
+}
+
+.subjectTD p {
+    font-family: 'Raleway';
+    font-weight: 600;
+    margin: 0;
+    overflow: hidden;
+    padding: 0px 15px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.subjectTD {
+    width: 800px;
+}
+
+.businessTD {
+    width: 170px;
+}
+
+table {
+    width: 100%;
+    overflow-x: scroll;
+    border-collapse: collapse;
+    border-spacing: 0 10px;
+    margin-top: 0px;
+    font-family: 'Lato';
+}
+
+tr, td, th {
+    border: 1px solid rgba(71, 98, 240, 0.12);
+}
+
+.linkTD a {
+    font-family: 'Raleway';
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    text-decoration: none;
+    text-align: center;
+    padding: 0px 10px;
+}
+
+.taskTD{
+    font-family: 'Raleway';
+    background-color: #EBF0F5;
+    color: #5B6E92;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    text-align: center;
+    margin: 5px;
+    padding: 0px 10px;
+    width: 120px;
+}
+
+.warningTD{
+    font-family: 'Raleway';
+    background-color: #ffc852;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    text-align: center;
+    margin: 5px;
+    padding: 0px 10px;
+    width: 80px;
+}
+
+.successTD {
+    font-family: 'Raleway';
+    background-color: #6EE366;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    text-align: center;
+    margin: 5px;
+    padding: 0px 10px;
+    width: 80px;
+}
+
+.main {
+    margin-top: 30px;
+}
+
+.margins{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.linkTD{
+    text-align: center;
+}
+
+img {
+    height: 100%;
+    margin-bottom: 30px;
+}
+
+.flexImages{
+    display: flex;
+    justify-content: space-between;
+}

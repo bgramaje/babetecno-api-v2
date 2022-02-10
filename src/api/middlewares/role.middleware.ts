@@ -1,0 +1,8 @@
+const isAdmin = () => {
+
+}
+
+const isSuper = () => {
+
+}
+

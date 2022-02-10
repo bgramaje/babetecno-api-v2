@@ -1,0 +1,94 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='styelsheet',href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,500;1,700;1,900&display=swap", type='text/css')
+    title Document
+table(style='border-spacing: 0px 20px; width: 100%;')
+    tr
+        td(colspan='2')
+            p.text.title(style="font-family: 'Roboto';font-size: 17px;font-weight: 600;letter-spacing: 0.3px; margin: 0; margin-left: 5px;")
+                | Hello, 
+                span(style='font-weight: 600;') #{name}.
+            p.text.subtitle(style="font-family: 'Roboto';font-size: 12px;font-weight: 400;letter-spacing: 0.3px;margin:0; margin-left: 5px;margin-top: -20px;color: #7E84A3;")
+                | Here is your detailed mail resume!
+    tr
+        table(style='border-spacing: 0px 20px; width: 100%;')
+            tr
+                td(colspan='2' style='text-align: center; background-color: #FAFAFA !important;')
+                    p(style="font-family: 'Roboto'; font-size: 13px; font-weight: 700; letter-spacing: 0.3px; margin-left: 5px; text-transform: uppercase; ")
+                        | Client detected
+            tr
+                td
+                    if errors.length > 0
+                        p.text.margin2(style="font-family: 'Roboto';font-size: 12px;font-weight: 400;letter-spacing: 0.3px;margin-left: 5px;")
+                            | #{errors.length} 
+                            span.errorText(style="font-family: 'Roboto';background-color: #d54e4e;color: white;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 0px 3px;padding: 2px 5px;") Failures
+                            | displayed below:
+                        table(style="width: 100%;overflow-x: scroll;border-collapse: collapse;border-spacing: 0 10px;margin-top: 0px;font-family: 'Lato';")
+                            tr(style='border: 1px solid rgba(71, 98, 240, 0.12);')
+                                td.businessTD(style="border: 1px solid rgba(71, 98, 240, 0.12);font-family: 'Roboto';background-color: white;color: black;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width: 90px;")
+                                    p CLIENT
+                                td.businessTD(style="border: 1px solid rgba(71, 98, 240, 0.12);font-family: 'Roboto';background-color: white;color: black;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width: 90px;")
+                                    p SOFTWARE
+                                td.errorTD(style="border: 1px solid rgba(71, 98, 240, 0.12);font-family: 'Roboto';background-color: white;color: black;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width: 70px;letter-spacing: 0.5px;")
+                                    p STATUS
+                                td.subjectTD(style='border: 1px solid rgba(71, 98, 240, 0.12); font-family: Roboto;background-color: white;color: black;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;')
+                                    p SUBJECT
+                                td.linkTD(style='border: 1px solid rgba(71, 98, 240, 0.12);margin: 0;padding: 0; text-align: center; font-family: Roboto; background-color: white;color: black;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width:80px;')
+                                    p View
+                            each val in errors
+                                tr(style='border: 1px solid rgba(71, 98, 240, 0.12);')
+                                    td.businessTD(style="border: 1px solid rgba(71, 98, 240, 0.12);font-family: 'Roboto';background-color: #EBF0F5;color: #5B6E92;font-weight: 800;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width: 90px;")
+                                        if(val.client)
+                                            p #{val.client.name}
+                                        else 
+                                            p UNKNOWN 
+                                    td.businessTD(style="border: 1px solid rgba(71, 98, 240, 0.12);font-family: 'Roboto';background-color: #EBF0F5;color: #5B6E92;font-weight: 800;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width: 90px;")
+                                        if(val.software)
+                                            p #{val.software.name}
+                                        else 
+                                            p UNKNOWN 
+                                    td.errorTD(style="border: 1px solid rgba(71, 98, 240, 0.12);font-family: 'Roboto';background-color: #d54e4e;color: white;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width: 70px;letter-spacing: 0.5px;")
+                                        p ERROR
+                                    td.subjectTD(style='border: 1px solid rgba(71, 98, 240, 0.12);')
+                                        p(style="font-family: 'Roboto';font-weight: 600;margin: 0;overflow: hidden;padding: 5px 15px;font-size: 11px;line-height: 1.5; width: 650px;white-space: nowrap;text-overflow: ellipsis;")
+                                            | #{val.subject}
+                                    td.linkTD(style='border: 1px solid rgba(71, 98, 240, 0.12);margin: 0;padding: 0; text-align: center; width:80px;')
+                                        a(href=`http://localhost:3000/mails/${val._msg_id}`, target="_blank" style="font-family: 'Roboto';font-weight: 600;text-transform: uppercase;font-size: 11px;text-decoration: none;text-align: center;padding: 0px 5px;margin: 0;") View
+                    if warnings.length > 0
+                        p.text.margins(style="font-family: 'Roboto';font-size: 12px;font-weight: 400;letter-spacing: 0.3px;margin-left: 5px;margin-top: 20px;")
+                            | #{warnings.length}
+                            span.warningText(style="font-family: 'Roboto';background-color: #f0ad4e;color: white;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 0px 3px;padding: 2px 5px;") Warnings
+                            | displayed below:
+                        table(style="width: 100%;overflow-x: scroll;border-collapse: collapse;border-spacing: 0 10px;margin-top: 0px;font-family: 'Lato';")
+                            tr(style='border: 1px solid rgba(71, 98, 240, 0.12);')
+                                td.businessTD(style="border: 1px solid rgba(71, 98, 240, 0.12);font-family: 'Roboto';background-color: white;color: black;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width: 90px;")
+                                    p CLIENT 
+                                td.businessTD(style="border: 1px solid rgba(71, 98, 240, 0.12);font-family: 'Roboto';background-color: white;color: black;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width: 90px;")
+                                    p SOFTWARE
+                                td.errorTD(style="border: 1px solid rgba(71, 98, 240, 0.12);font-family: 'Roboto';background-color: white;color: black;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width: 70px;letter-spacing: 0.5px;")
+                                    p STATUS
+                                td.subjectTD(style='border: 1px solid rgba(71, 98, 240, 0.12); font-family: Roboto;background-color: white;color: black;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;')
+                                    p SUBJECT
+                                td.linkTD(style='border: 1px solid rgba(71, 98, 240, 0.12);margin: 0;padding: 0; text-align: center; font-family: Roboto; background-color: white;color: black;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width:80px;')
+                                    p View
+                            each val in warnings
+                                tr(style='border: 1px solid rgba(71, 98, 240, 0.12);')
+                                    td.businessTD(style="border: 1px solid rgba(71, 98, 240, 0.12);font-family: 'Roboto';background-color: #EBF0F5;color: #5B6E92;font-weight: 800;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width: 90px;")
+                                        if(val.client)
+                                            p #{val.client.name}
+                                        else 
+                                            p UNKNOWN 
+                                    td.businessTD(style="border: 1px solid rgba(71, 98, 240, 0.12);font-family: 'Roboto';background-color: #EBF0F5;color: #5B6E92;font-weight: 800;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width: 90px;")
+                                        if(val.software)
+                                            p #{val.software.name}
+                                        else 
+                                            p UNKNOWN 
+                                    td.warningTD(style="border: 1px solid rgba(71, 98, 240, 0.12);font-family: 'Roboto';background-color: #f0ad4e;color: white;font-weight: 700;text-transform: uppercase;font-size: 11px;text-align: center;margin: 5px;padding: 0px 10px;width: 70px;letter-spacing: 0.4px;")
+                                        p Warning
+                                    td.subjectTD(style='border: 1px solid rgba(71, 98, 240, 0.12);')
+                                        p(style="font-family: 'Roboto';font-weight: 600;margin: 0;overflow: hidden;padding: 5px 15px;font-size: 11px;line-height: 1.5; width: 650px;white-space: nowrap;text-overflow: ellipsis;")
+                                            | #{val.subject}
+                                    td.linkTD(style='border: 1px solid rgba(71, 98, 240, 0.12);margin: 0;padding: 0; text-align: center; width:80px;')
+                                        a(href=`http://localhost:3000/mails/${val._msg_id}`, target="_blank" style="font-family: 'Roboto';font-weight: 600;text-transform: uppercase;font-size: 11px;text-decoration: none;text-align: center;padding: 0px 10px;margin: 0;") View

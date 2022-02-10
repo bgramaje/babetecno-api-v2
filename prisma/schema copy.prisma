@@ -1,0 +1,138 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model client {
+  id              Int               @id  @default(autoincrement())
+  name            String            @db.VarChar(45)
+  cif             String            @unique @db.VarChar(45)
+  keywords        clientKeywords[] 
+  mails           mail[]
+  usuarios        usuario_client[]
+}
+
+model clientKeywords {
+  id       Int    @default(autoincrement())
+  name     String @db.VarChar(45)
+  idclient Int
+  client   client @relation(fields: [idclient], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_client_identifiers_clients")
+
+  @@map("client_keywords")
+  @@id([id, idclient])
+}
+
+model errorKeywords {
+  id         Int      @default(autoincrement())
+  name       String   @db.VarChar(45)
+  idsoftware Int
+  software   software @relation(fields: [idsoftware], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_error_keywords_software1")
+
+  @@map("error_keywords")
+  @@id([id, idsoftware])
+}
+
+model softwareKeywords {
+  id         Int      @default(autoincrement())
+  name       String   @db.VarChar(45)
+  idsoftware Int
+  software   software @relation(fields: [idsoftware], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_software_identifiers_software")
+
+  @@map("software_keywords")
+  @@id([id, idsoftware])
+}
+
+model mail {
+  id         Int       @default(autoincrement())
+  status     String?   @db.VarChar(45)
+  messageId     String    @unique @db.VarChar(65535) @map("messageid")
+  from       String    @db.VarChar(65535) @map("from_mail")
+  subject    String    @db.VarChar(65535)
+  text       String?   @db.VarChar(65535) @map("text_mail")
+  html       String?   @db.VarChar(65535)
+  date       DateTime? @db.Timestamp(6)
+  idsoftware Int?
+  idclient   Int?
+  sended     Boolean?
+  client     client?    @relation(fields: [idclient], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_mail_client1")
+  software   software? @relation(fields: [idsoftware], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_mail_software1")
+
+  @@id([id])
+}
+
+model software {
+  id               Int                @id  @default(autoincrement())
+  name             String             @db.VarChar(45)
+  onlysubject     Boolean?
+  errorKeywords   errorKeywords[]
+  mail             mail[]
+  successKeywords successKeywords[]
+  warningKeywords warningKeywords[]
+  keywords softwareKeywords[]
+}
+
+model successKeywords {
+  id         Int      @default(autoincrement())
+  name       String   @db.VarChar(45)
+  idsoftware Int
+  software   software @relation(fields: [idsoftware], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_success_keywords_software1")
+
+  @@map("success_keywords")
+  @@id([id, idsoftware])
+}
+
+model usuario {
+  id                    Int                     @id  @default(autoincrement())
+  dni                   String                  @db.VarChar(45)
+  username              String                  @unique @db.VarChar(45)
+  email_login           String                  @unique @db.VarChar(45)
+  passw                 String                  @db.VarChar(255)
+  login                 Boolean
+  name                  String                  @db.VarChar(45)
+  clients        usuario_client[]
+  addresses         userAdresses[]
+  interval userSendInterval[]
+}
+
+model usuario_client {
+  idusuario Int 
+  idclient  Int
+  client    client  @relation(fields: [idclient], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_users_has_clients_clients1")
+  usuario   usuario @relation(fields: [idusuario], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_users_has_clients_users1")
+
+  @@id([idusuario, idclient])
+}
+
+model userAdresses {
+  id        Int  @default(autoincrement())
+  email     String? @db.VarChar(45)
+  idusuario Int
+  usuario   usuario @relation(fields: [idusuario], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_email_users1")
+
+  @@map("usuario_email")
+  @@id([id, idusuario])
+}
+
+model userSendInterval {
+  id        Int  @default(autoincrement())
+  date      DateTime? @db.Timestamp(6)
+  idusuario Int
+  usuario   usuario   @relation(fields: [idusuario], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_send_interval_user1")
+
+  @@map("usuario_send_interval")
+  @@id([id, idusuario])
+}
+
+model warningKeywords {
+  id         Int   @default(autoincrement())
+  name       String   @db.VarChar(45)
+  idsoftware Int
+  software   software @relation(fields: [idsoftware], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_warning_keywords_software1")
+
+  @@map("warning_keywords")
+  @@id([id, idsoftware])
+}
